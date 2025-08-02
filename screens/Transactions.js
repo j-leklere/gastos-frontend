@@ -1,5 +1,7 @@
-import { Text } from "react-native";
+import TransactionsOutput from "../components/Transactions/TransactionsOutput";
 
 export default function Transactions() {
-  return <Text>Transacciones</Text>;
+  return (
+    <TransactionsOutput transactionsTotal={10} transactionsPeriod="Total" />
+  );
 }

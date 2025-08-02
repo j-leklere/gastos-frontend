@@ -3,11 +3,13 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import Transactions from "./screens/Transactions";
-import Home from "./screens/Home";
-import ManageExpense from "./screens/ManageExpense";
 import { GlobalStyles } from "./constants/styles";
 import { Ionicons } from "@expo/vector-icons";
+
+import ManageExpense from "./screens/ManageExpense";
+import Home from "./screens/Home";
+import Recents from "./screens/Recents";
+import Transactions from "./screens/Transactions";
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -30,6 +32,17 @@ function ExpensesOverview() {
           tabBarLabel: "Inicio",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home" size={size} color={color} />
+          ),
+        }}
+      />
+      <BottomTabs.Screen
+        name="Recientes"
+        component={Recents}
+        options={{
+          title: "Recientes",
+          tabBarLabel: "Recientes",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="calendar" size={size} color={color} />
           ),
         }}
       />
