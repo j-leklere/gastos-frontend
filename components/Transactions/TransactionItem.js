@@ -1,10 +1,23 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
 import { GlobalStyles } from "../../constants/styles";
 import { getFormattedDate } from "../../util/date";
 
-export default function TransactionItem({ description, date, amount }) {
+export default function TransactionItem({ id, description, date, amount }) {
+  const navigation = useNavigation();
+
+  function transactionPressedHandler() {
+    navigation.navigate("ManageTransaction", {
+      transactionId: id,
+    });
+  }
+
   return (
-    <Pressable>
+    <Pressable
+      onPress={transactionPressedHandler}
+      style={({ pressed }) => pressed && styles.pressed}
+    >
       <View style={styles.transaction}>
         <View>
           <Text style={[styles.textBase, styles.description]}>
@@ -21,6 +34,9 @@ export default function TransactionItem({ description, date, amount }) {
 }
 
 const styles = StyleSheet.create({
+  pressed: {
+    opacity: 0.75,
+  },
   transaction: {
     padding: 12,
     marginVertical: 8,

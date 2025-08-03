@@ -6,10 +6,11 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { GlobalStyles } from "./constants/styles";
 import { Ionicons } from "@expo/vector-icons";
 
-import ManageExpense from "./screens/ManageExpense";
+import ManageTransaction from "./screens/ManageTransaction";
 import Home from "./screens/Home";
 import Recents from "./screens/Recents";
 import Transactions from "./screens/Transactions";
+import IconButton from "./components/UI/IconButton";
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -17,12 +18,22 @@ const BottomTabs = createBottomTabNavigator();
 function ExpensesOverview() {
   return (
     <BottomTabs.Navigator
-      screenOptions={{
+      screenOptions={({ navigation }) => ({
         headerStyle: { backgroundColor: GlobalStyles.colors.primary },
         headerTintColor: "white",
         tabBarStyle: { backgroundColor: GlobalStyles.colors.primary },
         tabBarActiveTintColor: GlobalStyles.colors.accent,
-      }}
+        headerRight: ({ tintColor }) => (
+          <IconButton
+            icon="add"
+            size={24}
+            color={tintColor}
+            onPress={() => {
+              navigation.navigate("ManageTransaction");
+            }}
+          />
+        ),
+      })}
     >
       <BottomTabs.Screen
         name="Home"
@@ -66,13 +77,26 @@ export default function App() {
     <>
       <StatusBar style="light" />
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: GlobalStyles.backgrounds.secondary,
+            },
+            headerTintColor: "white",
+          }}
+        >
           <Stack.Screen
             name="ExpensesOverview"
             component={ExpensesOverview}
             options={{ headerShown: false }}
           />
-          <Stack.Screen name="ManageExpense" component={ManageExpense} />
+          <Stack.Screen
+            name="ManageTransaction"
+            component={ManageTransaction}
+            options={{
+              presentation: "modal",
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>
