@@ -1,5 +1,5 @@
 import MovementsOutput from "../components/Movements/MovementsOutput";
 
 export default function Movements() {
-  return <MovementsOutput MovementsTotal={10} MovementsPeriod="Total" />;
+  return <MovementsOutput movementsTotal={10} movementsPeriod="Total" />;
 }

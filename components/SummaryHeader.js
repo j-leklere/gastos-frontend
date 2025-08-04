@@ -5,7 +5,7 @@ import LinearGradientContainer from "./UI/LinearGradientContainer";
 
 export default function SummaryHeader() {
   return (
-    <View style={styles.container}>
+    <View>
       <LinearGradientContainer>
         <View style={styles.content}>
           <Text
@@ -36,10 +36,6 @@ export default function SummaryHeader() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 16,
-    paddingTop: 24,
-  },
   content: {
     padding: 10,
   },

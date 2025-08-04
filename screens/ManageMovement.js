@@ -7,9 +7,9 @@ export default function ManageMovement({ route, navigation }) {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: isEditing ? "Editar Transaccion" : "Agregar Transaccion",
+      title: isEditing ? "Editar Movimiento" : "Agregar Movimiento",
     });
   }, [navigation, isEditing]);
 
-  return <Text>Transaccion</Text>;
+  return <Text>Movimiento</Text>;
 }

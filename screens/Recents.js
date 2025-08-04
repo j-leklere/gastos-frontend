@@ -1,5 +1,5 @@
 import MovementsOutput from "../components/Movements/MovementsOutput";
 
 export default function Recents() {
-  return <MovementsOutput MovementsTotal={10} MovementsPeriod="Last 7 days" />;
+  return <MovementsOutput movementsTotal={10} movementsPeriod="Last 7 days" />;
 }

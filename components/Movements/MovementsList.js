@@ -5,10 +5,10 @@ function renderMovementItem(itemData) {
   return <MovementItem {...itemData.item} />;
 }
 
-export default function MovementsList({ Movements }) {
+export default function MovementsList({ movements }) {
   return (
     <FlatList
-      data={Movements}
+      data={movements}
       renderItem={renderMovementItem}
       keyExtractor={(item) => item.id}
     />

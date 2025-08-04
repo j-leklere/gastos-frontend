@@ -3,7 +3,7 @@ import MovementsSummary from "./MovementsSummary";
 import MovementsList from "./MovementsList";
 import { GlobalStyles } from "../../constants/styles";
 
-const Movements_LIST_DTO_DATA = [
+const MOVEMENTS_LIST_DTO_DATA = [
   {
     id: 1,
     type: "EGRESO",
@@ -97,11 +97,11 @@ const Movements_LIST_DTO_DATA = [
   },
 ];
 
-export default function MovementsOutput({ MovementsTotal, MovementsPeriod }) {
+export default function MovementsOutput({ movementsTotal, movementsPeriod }) {
   return (
     <View style={styles.container}>
-      <MovementsSummary total={MovementsTotal} periodName={MovementsPeriod} />
-      <MovementsList Movements={Movements_LIST_DTO_DATA} />
+      <MovementsSummary total={movementsTotal} periodName={movementsPeriod} />
+      <MovementsList movements={MOVEMENTS_LIST_DTO_DATA} />
     </View>
   );
 }

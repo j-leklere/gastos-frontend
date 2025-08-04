@@ -61,8 +61,8 @@ function ExpensesOverview() {
         name="Movements"
         component={Movements}
         options={{
-          title: "Transacciones",
-          tabBarLabel: "Transacciones",
+          title: "Movimientos",
+          tabBarLabel: "Movimientos",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="swap-horizontal" size={size} color={color} />
           ),
