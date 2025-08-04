@@ -1,9 +1,9 @@
 import { StyleSheet, View } from "react-native";
-import TransactionsSummary from "./TransactionsSummary";
-import TransactionsList from "./TransactionsList";
+import MovementsSummary from "./MovementsSummary";
+import MovementsList from "./MovementsList";
 import { GlobalStyles } from "../../constants/styles";
 
-const TRANSACTIONS_LIST_DTO_DATA = [
+const Movements_LIST_DTO_DATA = [
   {
     id: 1,
     type: "EGRESO",
@@ -97,17 +97,11 @@ const TRANSACTIONS_LIST_DTO_DATA = [
   },
 ];
 
-export default function TransactionsOutput({
-  transactionsTotal,
-  transactionsPeriod,
-}) {
+export default function MovementsOutput({ MovementsTotal, MovementsPeriod }) {
   return (
     <View style={styles.container}>
-      <TransactionsSummary
-        total={transactionsTotal}
-        periodName={transactionsPeriod}
-      />
-      <TransactionsList transactions={TRANSACTIONS_LIST_DTO_DATA} />
+      <MovementsSummary total={MovementsTotal} periodName={MovementsPeriod} />
+      <MovementsList Movements={Movements_LIST_DTO_DATA} />
     </View>
   );
 }

@@ -4,21 +4,21 @@ import { useNavigation } from "@react-navigation/native";
 import { GlobalStyles } from "../../constants/styles";
 import { getFormattedDate } from "../../util/date";
 
-export default function TransactionItem({ id, description, date, amount }) {
+export default function MovementItem({ id, description, date, amount }) {
   const navigation = useNavigation();
 
-  function transactionPressedHandler() {
-    navigation.navigate("ManageTransaction", {
-      transactionId: id,
+  function MovementPressedHandler() {
+    navigation.navigate("ManageMovement", {
+      MovementId: id,
     });
   }
 
   return (
     <Pressable
-      onPress={transactionPressedHandler}
+      onPress={MovementPressedHandler}
       style={({ pressed }) => pressed && styles.pressed}
     >
-      <View style={styles.transaction}>
+      <View style={styles.movement}>
         <View>
           <Text style={[styles.textBase, styles.description]}>
             {description}
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   pressed: {
     opacity: 0.75,
   },
-  transaction: {
+  movement: {
     padding: 12,
     marginVertical: 8,
     backgroundColor: GlobalStyles.backgrounds.primary,

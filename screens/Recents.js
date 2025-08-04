@@ -1,10 +1,5 @@
-import TransactionsOutput from "../components/Transactions/TransactionsOutput";
+import MovementsOutput from "../components/Movements/MovementsOutput";
 
 export default function Recents() {
-  return (
-    <TransactionsOutput
-      transactionsTotal={10}
-      transactionsPeriod="Last 7 days"
-    />
-  );
+  return <MovementsOutput MovementsTotal={10} MovementsPeriod="Last 7 days" />;
 }

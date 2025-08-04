@@ -1,9 +1,9 @@
 import { useLayoutEffect } from "react";
 import { Text } from "react-native";
 
-export default function ManageTransaction({ route, navigation }) {
-  const editedTransactionId = route.params?.transactionId;
-  const isEditing = !!editedTransactionId;
+export default function ManageMovement({ route, navigation }) {
+  const editedMovementId = route.params?.MovementId;
+  const isEditing = !!editedMovementId;
 
   useLayoutEffect(() => {
     navigation.setOptions({

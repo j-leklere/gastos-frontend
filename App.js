@@ -6,10 +6,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { GlobalStyles } from "./constants/styles";
 import { Ionicons } from "@expo/vector-icons";
 
-import ManageTransaction from "./screens/ManageTransaction";
+import ManageMovement from "./screens/ManageMovement";
 import Home from "./screens/Home";
 import Recents from "./screens/Recents";
-import Transactions from "./screens/Transactions";
+import Movements from "./screens/Movements";
 import IconButton from "./components/UI/IconButton";
 
 const Stack = createNativeStackNavigator();
@@ -29,7 +29,7 @@ function ExpensesOverview() {
             size={24}
             color={tintColor}
             onPress={() => {
-              navigation.navigate("ManageTransaction");
+              navigation.navigate("ManageMovement");
             }}
           />
         ),
@@ -58,8 +58,8 @@ function ExpensesOverview() {
         }}
       />
       <BottomTabs.Screen
-        name="Transactions"
-        component={Transactions}
+        name="Movements"
+        component={Movements}
         options={{
           title: "Transacciones",
           tabBarLabel: "Transacciones",
@@ -91,8 +91,8 @@ export default function App() {
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name="ManageTransaction"
-            component={ManageTransaction}
+            name="ManageMovement"
+            component={ManageMovement}
             options={{
               presentation: "modal",
             }}
