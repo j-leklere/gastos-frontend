@@ -1,8 +1,10 @@
-import { StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import SummaryHeader from "../components/SummaryHeader";
 import CategoryCard from "../components/Categories/CategoryCard";
 import { ScrollView } from "react-native";
+import MovementsList from "../components/Movements/MovementsList";
+import MovementItem from "../components/Movements/MovementItem";
 
 const CATEGORIES_SUMMARY_DTO_DATA = [
   {
@@ -16,6 +18,104 @@ const CATEGORIES_SUMMARY_DTO_DATA = [
   { id: 5, name: "Estacionamiento", amount: 76000 },
 ];
 
+const MOVEMENTS_LIST_DTO_DATA = [
+  {
+    id: 1,
+    type: "EGRESO",
+    description: "Compras",
+    amount: 45.67,
+    date: new Date("2025-07-20"),
+  },
+  {
+    id: 2,
+    type: "EGRESO",
+    description: "Electricidad",
+    amount: 75.32,
+    date: new Date("2025-07-18"),
+  },
+  {
+    id: 3,
+    type: "EGRESO",
+    description: "Caffe",
+    amount: 3.5,
+    date: new Date("2025-07-19"),
+  },
+  {
+    id: 4,
+    type: "INGRESO",
+    description: "Sueldo",
+    amount: 1500.0,
+    date: new Date("2025-07-17"),
+  },
+  {
+    id: 5,
+    type: "EGRESO",
+    description: "Pelicula",
+    amount: 27.0,
+    date: new Date("2025-07-16"),
+  },
+  {
+    id: 6,
+    type: "INGRESO",
+    description: "Sueldo",
+    amount: 1500.0,
+    date: new Date("2025-07-17"),
+  },
+  {
+    id: 7,
+    type: "EGRESO",
+    description: "Pelicula",
+    amount: 27.0,
+    date: new Date("2025-07-16"),
+  },
+  {
+    id: 8,
+    type: "INGRESO",
+    description: "Sueldo",
+    amount: 1500.0,
+    date: new Date("2025-07-17"),
+  },
+  {
+    id: 9,
+    type: "EGRESO",
+    description: "Pelicula",
+    amount: 27.0,
+    date: new Date("2025-07-16"),
+  },
+  {
+    id: 10,
+    type: "INGRESO",
+    description: "Sueldo",
+    amount: 1500.0,
+    date: new Date("2025-07-17"),
+  },
+  {
+    id: 11,
+    type: "EGRESO",
+    description: "Pelicula",
+    amount: 27.0,
+    date: new Date("2025-07-16"),
+  },
+  {
+    id: 12,
+    type: "INGRESO",
+    description: "Sueldo",
+    amount: 1500.0,
+    date: new Date("2025-07-17"),
+  },
+  {
+    id: 13,
+    type: "EGRESO",
+    description: "Pelicula",
+    amount: 27.0,
+    date: new Date("2025-07-16"),
+  },
+];
+
+function renderMovementItem(itemData) {
+  return <MovementItem {...itemData.item} />;
+}
+
 export default function Home() {
   return (
     <View style={styles.container}>
@@ -26,21 +126,28 @@ export default function Home() {
         style={styles.gradientContainer}
       >
         <SummaryHeader />
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.cardsContainer}
-        >
-          {CATEGORIES_SUMMARY_DTO_DATA.map((cardData) => {
-            return (
-              <CategoryCard
-                key={cardData.id}
-                name={cardData.name}
-                amount={cardData.amount}
-              />
-            );
-          })}
-        </ScrollView>
+        <View style={{ height: 70 }}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.cardsContainer}
+          >
+            {CATEGORIES_SUMMARY_DTO_DATA.map((cardData) => {
+              return (
+                <CategoryCard
+                  key={cardData.id}
+                  name={cardData.name}
+                  amount={cardData.amount}
+                />
+              );
+            })}
+          </ScrollView>
+        </View>
+        <FlatList
+          data={MOVEMENTS_LIST_DTO_DATA}
+          renderItem={renderMovementItem}
+          keyExtractor={(item) => item.id}
+        />
       </LinearGradient>
     </View>
   );

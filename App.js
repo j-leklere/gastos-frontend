@@ -11,6 +11,7 @@ import Home from "./screens/Home";
 import Recents from "./screens/Recents";
 import Movements from "./screens/Movements";
 import IconButton from "./components/UI/IconButton";
+import MovementsContextProvider from "./store/movements-context";
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -19,9 +20,12 @@ function ExpensesOverview() {
   return (
     <BottomTabs.Navigator
       screenOptions={({ navigation }) => ({
-        headerStyle: { backgroundColor: GlobalStyles.colors.primary },
+        headerStyle: { backgroundColor: GlobalStyles.backgrounds.secondary },
         headerTintColor: "white",
-        tabBarStyle: { backgroundColor: GlobalStyles.colors.primary },
+        tabBarStyle: {
+          backgroundColor: GlobalStyles.backgrounds.secondary,
+          borderTopWidth: 0,
+        },
         tabBarActiveTintColor: GlobalStyles.colors.accent,
         headerRight: ({ tintColor }) => (
           <IconButton
@@ -76,29 +80,31 @@ export default function App() {
   return (
     <>
       <StatusBar style="light" />
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerStyle: {
-              backgroundColor: GlobalStyles.backgrounds.secondary,
-            },
-            headerTintColor: "white",
-          }}
-        >
-          <Stack.Screen
-            name="ExpensesOverview"
-            component={ExpensesOverview}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="ManageMovement"
-            component={ManageMovement}
-            options={{
-              presentation: "modal",
+      <MovementsContextProvider>
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: GlobalStyles.backgrounds.secondary,
+              },
+              headerTintColor: "white",
             }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+          >
+            <Stack.Screen
+              name="ExpensesOverview"
+              component={ExpensesOverview}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="ManageMovement"
+              component={ManageMovement}
+              options={{
+                presentation: "modal",
+              }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </MovementsContextProvider>
     </>
   );
 }

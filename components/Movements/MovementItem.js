@@ -7,15 +7,15 @@ import { getFormattedDate } from "../../util/date";
 export default function MovementItem({ id, description, date, amount }) {
   const navigation = useNavigation();
 
-  function MovementPressedHandler() {
+  function movementPressedHandler() {
     navigation.navigate("ManageMovement", {
-      MovementId: id,
+      movementId: id,
     });
   }
 
   return (
     <Pressable
-      onPress={MovementPressedHandler}
+      onPress={movementPressedHandler}
       style={({ pressed }) => pressed && styles.pressed}
     >
       <View style={styles.movement}>
@@ -45,14 +45,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    elevation: 3,
-    shadowColor: "gray",
-    shadowRadius: 4,
-    shadowOffset: { widht: 1, height: 1 },
-    shadowOpacity: 0.4,
+    // elevation: 3,
+    // shadowColor: "#000000",
+    // shadowRadius: 4,
+    // shadowOffset: { widht: 1, height: 1 },
+    // shadowOpacity: 0.4,
   },
   textBase: {
-    color: GlobalStyles.colors.primary,
+    color: "white",
   },
   description: {
     fontSize: 16,

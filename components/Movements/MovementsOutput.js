@@ -1,107 +1,24 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import MovementsSummary from "./MovementsSummary";
 import MovementsList from "./MovementsList";
 import { GlobalStyles } from "../../constants/styles";
 
-const MOVEMENTS_LIST_DTO_DATA = [
-  {
-    id: 1,
-    type: "EGRESO",
-    description: "Compras",
-    amount: 45.67,
-    date: new Date("2025-07-20"),
-  },
-  {
-    id: 2,
-    type: "EGRESO",
-    description: "Electricidad",
-    amount: 75.32,
-    date: new Date("2025-07-18"),
-  },
-  {
-    id: 3,
-    type: "EGRESO",
-    description: "Caffe",
-    amount: 3.5,
-    date: new Date("2025-07-19"),
-  },
-  {
-    id: 4,
-    type: "INGRESO",
-    description: "Sueldo",
-    amount: 1500.0,
-    date: new Date("2025-07-17"),
-  },
-  {
-    id: 5,
-    type: "EGRESO",
-    description: "Pelicula",
-    amount: 27.0,
-    date: new Date("2025-07-16"),
-  },
-  {
-    id: 6,
-    type: "INGRESO",
-    description: "Sueldo",
-    amount: 1500.0,
-    date: new Date("2025-07-17"),
-  },
-  {
-    id: 7,
-    type: "EGRESO",
-    description: "Pelicula",
-    amount: 27.0,
-    date: new Date("2025-07-16"),
-  },
-  {
-    id: 8,
-    type: "INGRESO",
-    description: "Sueldo",
-    amount: 1500.0,
-    date: new Date("2025-07-17"),
-  },
-  {
-    id: 9,
-    type: "EGRESO",
-    description: "Pelicula",
-    amount: 27.0,
-    date: new Date("2025-07-16"),
-  },
-  {
-    id: 10,
-    type: "INGRESO",
-    description: "Sueldo",
-    amount: 1500.0,
-    date: new Date("2025-07-17"),
-  },
-  {
-    id: 11,
-    type: "EGRESO",
-    description: "Pelicula",
-    amount: 27.0,
-    date: new Date("2025-07-16"),
-  },
-  {
-    id: 12,
-    type: "INGRESO",
-    description: "Sueldo",
-    amount: 1500.0,
-    date: new Date("2025-07-17"),
-  },
-  {
-    id: 13,
-    type: "EGRESO",
-    description: "Pelicula",
-    amount: 27.0,
-    date: new Date("2025-07-16"),
-  },
-];
+export default function MovementsOutput({
+  movements,
+  movementsTotal,
+  movementsPeriod,
+  fallBackText,
+}) {
+  let content = <Text style={styles.infoText}>{fallBackText}</Text>;
 
-export default function MovementsOutput({ movementsTotal, movementsPeriod }) {
+  if (movements.length > 0) {
+    content = <MovementsList movements={movements} />;
+  }
+
   return (
     <View style={styles.container}>
       <MovementsSummary total={movementsTotal} periodName={movementsPeriod} />
-      <MovementsList movements={MOVEMENTS_LIST_DTO_DATA} />
+      {content}
     </View>
   );
 }
@@ -113,5 +30,11 @@ const styles = StyleSheet.create({
     paddingTop: 24,
     backgroundColor: GlobalStyles.backgrounds.secondary,
     gap: 10,
+  },
+  infoText: {
+    color: "white",
+    fontSize: 16,
+    textAlign: "center",
+    marginTop: 24,
   },
 });
