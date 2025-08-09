@@ -21,8 +21,7 @@ export default function Button({ children, onPress, mode, style }) {
 const styles = StyleSheet.create({
   button: {
     borderRadius: 4,
-    padding: 8,
-    backgroundColor: GlobalStyles.backgrounds.darkBlue,
+    // padding: 4,
   },
   flat: {
     backgroundColor: "transparent",

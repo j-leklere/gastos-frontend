@@ -5,7 +5,7 @@ export const GlobalStyles = {
   },
   backgrounds: {
     primary: "#182130",
-    secondary: "darkblue",
+    secondary: "#111828",
     darkBlue: "darkblue",
   },
 
@@ -61,4 +61,12 @@ export const GlobalStyles = {
   tinyMarginBottom: {
     marginBottom: 6,
   },
+};
+
+export const Colors = {
+  primary100: "#f9beda",
+  primary500: "#c30b64",
+  primary800: "#610440",
+  error100: "#fcdcbf",
+  error500: "#f37c13",
 };
