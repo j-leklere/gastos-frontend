@@ -1,38 +1,45 @@
-import { TouchableOpacity, StyleSheet } from "react-native";
+import { StyleSheet, Pressable, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import { navigate } from "../../navigationRef";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import LinearGradientContainer from "./LinearGradientContainer";
 
 export default function FloatingAddButton() {
+  const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
+  const bottom = insets.bottom;
+
+  function onPress() {
+    navigation.navigate("ManageMovement");
+  }
+
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={() => navigate("ManageMovement")}
-      activeOpacity={0.8}
-    >
-      <LinearGradientContainer>
-        <Ionicons name="add" size={28} color="#fff" />
-      </LinearGradientContainer>
-    </TouchableOpacity>
+    <View pointerEvents="box-none" style={StyleSheet.absoluteFill}>
+      <Pressable onPress={onPress} style={[styles.wrapper, { bottom }]}>
+        <LinearGradientContainer style={styles.gradient}>
+          <Ionicons name="add" size={28} color="white" />
+        </LinearGradientContainer>
+      </Pressable>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  wrapper: {
     position: "absolute",
-    bottom: 24,
-    right: 24,
-    elevation: 5,
-    shadowColor: "#000",
-    shadowOpacity: 0.2,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 4,
+    right: 16,
+    zIndex: 10000,
   },
   gradient: {
     width: 56,
     height: 56,
-    borderRadius: 28,
+    borderRadius: 56 / 2,
     alignItems: "center",
     justifyContent: "center",
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 6,
   },
 });

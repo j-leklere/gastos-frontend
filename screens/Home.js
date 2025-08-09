@@ -5,6 +5,7 @@ import CategoryCard from "../components/Categories/CategoryCard";
 import { ScrollView } from "react-native";
 import MovementsList from "../components/Movements/MovementsList";
 import MovementItem from "../components/Movements/MovementItem";
+import FloatingAddButton from "../components/UI/FloatingAddButton";
 
 const CATEGORIES_SUMMARY_DTO_DATA = [
   {
@@ -118,37 +119,40 @@ function renderMovementItem(itemData) {
 
 export default function Home() {
   return (
-    <View style={styles.container}>
-      <LinearGradient
-        colors={["#111828", "#171E2D"]}
-        start={{ x: 0.5, y: 0 }}
-        end={{ x: 0.5, y: 1 }}
-        style={styles.gradientContainer}
-      >
-        <SummaryHeader />
-        <View style={{ height: 70 }}>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.cardsContainer}
-          >
-            {CATEGORIES_SUMMARY_DTO_DATA.map((cardData) => {
-              return (
-                <CategoryCard
-                  key={cardData.id}
-                  name={cardData.name}
-                  amount={cardData.amount}
-                />
-              );
-            })}
-          </ScrollView>
-        </View>
-        <FlatList
-          data={MOVEMENTS_LIST_DTO_DATA}
-          renderItem={renderMovementItem}
-          keyExtractor={(item) => item.id}
-        />
-      </LinearGradient>
+    <View style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <LinearGradient
+          colors={["#111828", "#171E2D"]}
+          start={{ x: 0.5, y: 0 }}
+          end={{ x: 0.5, y: 1 }}
+          style={styles.gradientContainer}
+        >
+          <SummaryHeader />
+          <View style={{ height: 70 }}>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.cardsContainer}
+            >
+              {CATEGORIES_SUMMARY_DTO_DATA.map((cardData) => {
+                return (
+                  <CategoryCard
+                    key={cardData.id}
+                    name={cardData.name}
+                    amount={cardData.amount}
+                  />
+                );
+              })}
+            </ScrollView>
+          </View>
+          <FlatList
+            data={MOVEMENTS_LIST_DTO_DATA}
+            renderItem={renderMovementItem}
+            keyExtractor={(item) => item.id}
+          />
+        </LinearGradient>
+      </View>
+      <FloatingAddButton />
     </View>
   );
 }

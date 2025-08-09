@@ -2,6 +2,8 @@ import { useContext } from "react";
 import MovementsOutput from "../components/Movements/MovementsOutput";
 import { MovementsContext } from "../store/movements-context";
 import { getDateMinusDays } from "../util/date";
+import { View } from "react-native";
+import FloatingAddButton from "../components/UI/FloatingAddButton";
 
 export default function Recents() {
   const movementsCtx = useContext(MovementsContext);
@@ -14,11 +16,14 @@ export default function Recents() {
   });
 
   return (
-    <MovementsOutput
-      movements={recentMovments}
-      movementsTotal={10}
-      movementsPeriod="Ultimos 7 days"
-      fallBackText="No hay movimientos en los ultimos 7 dias"
-    />
+    <View style={{ flex: 1 }}>
+      <MovementsOutput
+        movements={recentMovments}
+        movementsTotal={10}
+        movementsPeriod="Ultimos 7 days"
+        fallBackText="No hay movimientos en los ultimos 7 dias"
+      />
+      <FloatingAddButton />
+    </View>
   );
 }
