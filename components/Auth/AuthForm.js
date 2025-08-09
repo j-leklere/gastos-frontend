@@ -1,13 +1,14 @@
 import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import { StyleSheet, Text, View } from "react-native";
 
 import Button from "../UI/Button";
 import Input from "./Input";
-import { LinearGradient } from "expo-linear-gradient";
 import LinearGradientContainer from "../UI/LinearGradientContainer";
 import IconButton from "../UI/IconButton";
 
 function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
+  const navigation = useNavigation();
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredConfirmEmail, setEnteredConfirmEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");

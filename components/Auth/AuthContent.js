@@ -1,14 +1,11 @@
 import { useState } from "react";
 import { Alert, StyleSheet, Text, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+// import { useNavigation } from "@react-navigation/native";
 
-import FlatButton from "../UI/FlatButton";
 import AuthForm from "./AuthForm";
-import { Colors } from "../../constants/styles";
-import LinearGradientContainer from "../UI/LinearGradientContainer";
 
 function AuthContent({ isLogin, onAuthenticate }) {
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
 
   const [credentialsInvalid, setCredentialsInvalid] = useState({
     email: false,
@@ -17,13 +14,13 @@ function AuthContent({ isLogin, onAuthenticate }) {
     confirmPassword: false,
   });
 
-  function switchAuthModeHandler() {
-    if (isLogin) {
-      navigation.replace("Signup");
-    } else {
-      navigation.replace("Login");
-    }
-  }
+  // function switchAuthModeHandler() {
+  //   if (isLogin) {
+  //     navigation.replace("Signup");
+  //   } else {
+  //     navigation.replace("Login");
+  //   }
+  // }
 
   function submitHandler(credentials) {
     let { email, confirmEmail, password, confirmPassword } = credentials;

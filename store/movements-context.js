@@ -103,10 +103,11 @@ export const MovementsContext = createContext({
 
 function movementsReducer(state, action) {
   switch (action.type) {
-    case "ADD":
+    case "ADD": {
       const id = new Date().toString + Math.random().toString();
       return [{ ...action.payload, id: id }, ...state];
-    case "UPDATE":
+    }
+    case "UPDATE": {
       const updatableMovementIndex = state.findIndex(
         (movement) => movement.id === action.payload.id
       );
@@ -115,6 +116,7 @@ function movementsReducer(state, action) {
       const updatedMovements = [...state];
       updatedMovements[updatableMovementIndex] = updatedMovement;
       return updatedMovements;
+    }
     case "DELETE":
       return state.filter((movement) => movement.id !== action.payload);
     default:
