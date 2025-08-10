@@ -11,7 +11,7 @@ export default [
   pluginReact.configs.flat.recommended,
 
   {
-    files: ["**/*.{js,jsx}"],
+    files: ["src/**/*.{js,jsx,ts,tsx}"],
     languageOptions: {
       ecmaVersion: 2021,
       sourceType: "module",
@@ -61,7 +61,8 @@ export default [
         "axios"
       ],
       "import/resolver": {
-        node: { extensions: [".js", ".jsx", ".json"] }
+        "babel-module": {},
+        node: { extensions: [".js", ".jsx", ".ts", ".tsx", ".json"] }
       }
     }
   }

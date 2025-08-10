@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { GlobalStyles } from "./constants/styles";
 
 import { StatusBar } from "expo-status-bar";
-import AppLoading from "expo-app-loading";
+import * as SplashScreen from "expo-splash-screen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -15,6 +15,7 @@ import SignupScreen from "./screens/SignupScreen";
 import ManageMovement from "./screens/ManageMovement";
 
 import MovementsOverview from "./components/Movements/MovementsOverview";
+import { View } from "react-native";
 
 const Stack = createNativeStackNavigator();
 
@@ -57,33 +58,35 @@ function AppStack() {
 }
 
 function Root() {
-  const [isTryingLogin, setIsTryingLogin] = useState(true);
+  const [ready, setReady] = useState(false);
   const authCtx = useContext(AuthContext);
 
   useEffect(() => {
-    async function loadToken() {
+    async function boot() {
       const token = await AsyncStorage.getItem("token");
-      if (token) {
-        authCtx.authenticate(token);
-      }
-      setIsTryingLogin(false);
+      if (token) authCtx.authenticate(token);
+      setReady(true);
     }
-    loadToken();
+    boot();
   }, []);
 
-  if (isTryingLogin) {
-    return <AppLoading />;
-  }
+  const onLayout = useCallback(async () => {
+    if (ready) await SplashScreen.hideAsync();
+  }, [ready]);
+
+  if (!ready) return null;
 
   return (
-    <NavigationContainer>
-      {!authCtx.isAuthenticated && <AuthStack />}
-      {authCtx.isAuthenticated && (
-        <MovementsContextProvider>
-          <AppStack />
-        </MovementsContextProvider>
-      )}
-    </NavigationContainer>
+    <View style={{ flex: 1 }} onLayout={onLayout}>
+      <NavigationContainer>
+        {!authCtx.isAuthenticated && <AuthStack />}
+        {authCtx.isAuthenticated && (
+          <MovementsContextProvider>
+            <AppStack />
+          </MovementsContextProvider>
+        )}
+      </NavigationContainer>
+    </View>
   );
 }
 
