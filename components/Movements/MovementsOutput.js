@@ -7,7 +7,7 @@ export default function MovementsOutput({
   movements,
   movementsTotal,
   movementsPeriod,
-  fallBackText,
+  fallBackText
 }) {
   let content = <Text style={styles.infoText}>{fallBackText}</Text>;
 
@@ -29,12 +29,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingTop: 24,
     backgroundColor: GlobalStyles.backgrounds.secondary,
-    gap: 10,
+    gap: 10
   },
   infoText: {
     color: "white",
     fontSize: 16,
     textAlign: "center",
-    marginTop: 24,
-  },
+    marginTop: 24
+  }
 });

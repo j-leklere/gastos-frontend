@@ -27,13 +27,13 @@ export default function ManageMovement({ route, navigation }) {
       movementsCtx.updateMovement(editedMovementId, {
         description: "Test",
         amount: 999,
-        date: new Date("2022-05-20"),
+        date: new Date("2022-05-20")
       });
     } else {
       movementsCtx.addMovement({
         description: "Test",
         amount: 199.99,
-        date: new Date("2022-05-20"),
+        date: new Date("2022-05-20")
       });
     }
     navigation.goBack();
@@ -41,7 +41,7 @@ export default function ManageMovement({ route, navigation }) {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: isEditing ? "Editar Movimiento" : "Agregar Movimiento",
+      title: isEditing ? "Editar Movimiento" : "Agregar Movimiento"
     });
   }, [navigation, isEditing]);
 
@@ -73,22 +73,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 24,
-    backgroundColor: GlobalStyles.colors.primary,
+    backgroundColor: GlobalStyles.colors.primary
   },
   buttonsContainer: {
     flexDirection: "row",
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "center"
   },
   button: {
     minWidth: 120,
-    marginHorizontal: 8,
+    marginHorizontal: 8
   },
   deleteContainer: {
     marginTop: 16,
     paddingTop: 8,
     borderTopWidth: 2,
     borderTopColor: GlobalStyles.colors.accent,
-    alignItems: "center",
-  },
+    alignItems: "center"
+  }
 });

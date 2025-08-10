@@ -9,7 +9,7 @@ export default function MovementItem({ id, description, date, amount }) {
 
   function movementPressedHandler() {
     navigation.navigate("ManageMovement", {
-      movementId: id,
+      movementId: id
     });
   }
 
@@ -35,7 +35,7 @@ export default function MovementItem({ id, description, date, amount }) {
 
 const styles = StyleSheet.create({
   pressed: {
-    opacity: 0.75,
+    opacity: 0.75
   },
   movement: {
     padding: 12,
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "center"
     // elevation: 3,
     // shadowColor: "#000000",
     // shadowRadius: 4,
@@ -52,12 +52,12 @@ const styles = StyleSheet.create({
     // shadowOpacity: 0.4,
   },
   textBase: {
-    color: "white",
+    color: "white"
   },
   description: {
     fontSize: 16,
     marginBottom: 4,
-    fontWeight: 900,
+    fontWeight: 900
   },
   amountContainer: {
     paddingHorizontal: 12,
@@ -66,10 +66,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 4,
-    minWidth: 80,
+    minWidth: 80
   },
   amount: {
     color: GlobalStyles.colors.primary,
-    fontWeight: 900,
-  },
+    fontWeight: 900
+  }
 });

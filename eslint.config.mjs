@@ -18,13 +18,13 @@ export default [
       parserOptions: { ecmaFeatures: { jsx: true } },
       globals: {
         __DEV__: "readonly",
-        console: "readonly",
-      },
+        console: "readonly"
+      }
     },
     plugins: {
       react: pluginReact,
       import: pluginImport,
-      prettier: pluginPrettier,
+      prettier: pluginPrettier
     },
     rules: {
       "react/react-in-jsx-scope": "off",
@@ -34,10 +34,15 @@ export default [
       "react/jsx-no-undef": "error",
       "import/no-unresolved": [
         "error",
-        { commonjs: true, caseSensitive: true },
+        { commonjs: true, caseSensitive: true }
       ],
 
-      "prettier/prettier": ["error", { endOfLine: "auto" }],
+      "prettier/prettier": [
+        "error",
+        { endOfLine: "auto", trailingComma: "none" }
+      ],
+
+      "comma-dangle": ["off"]
     },
     settings: {
       react: { version: "detect" },
@@ -53,11 +58,11 @@ export default [
         "@react-navigation/bottom-tabs",
         "@react-navigation/native-stack",
         "@react-native-async-storage/async-storage",
-        "axios",
+        "axios"
       ],
       "import/resolver": {
-        node: { extensions: [".js", ".jsx", ".json"] },
-      },
-    },
-  },
+        node: { extensions: [".js", ".jsx", ".json"] }
+      }
+    }
+  }
 ];

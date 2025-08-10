@@ -8,7 +8,7 @@ async function authenticate(mode, email, password) {
   const response = await axios.post(url, {
     email: email,
     password: password,
-    returnSecureToken: true,
+    returnSecureToken: true
   });
 
   const token = response.data.idToken;

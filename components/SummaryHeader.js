@@ -12,7 +12,7 @@ export default function SummaryHeader() {
             style={[
               GlobalStyles.textBase,
               GlobalStyles.bigText,
-              GlobalStyles.tinyMarginBottom,
+              GlobalStyles.tinyMarginBottom
             ]}
           >
             Buenos dias Joaquin
@@ -21,7 +21,7 @@ export default function SummaryHeader() {
             style={[
               GlobalStyles.textBase,
               GlobalStyles.smallText,
-              GlobalStyles.hugeMarginBottom,
+              GlobalStyles.hugeMarginBottom
             ]}
           >
             Tienes 3 gastos pendientes de categorizar
@@ -37,11 +37,11 @@ export default function SummaryHeader() {
 
 const styles = StyleSheet.create({
   content: {
-    padding: 10,
+    padding: 10
   },
   textBase: {
     color: "white",
     fontWeight: 700,
-    fontSize: 16,
-  },
+    fontSize: 16
+  }
 });

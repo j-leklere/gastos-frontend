@@ -11,7 +11,7 @@ function AuthContent({ isLogin, onAuthenticate }) {
     email: false,
     password: false,
     confirmEmail: false,
-    confirmPassword: false,
+    confirmPassword: false
   });
 
   // function switchAuthModeHandler() {
@@ -43,7 +43,7 @@ function AuthContent({ isLogin, onAuthenticate }) {
         email: !emailIsValid,
         confirmEmail: !emailIsValid || !emailsAreEqual,
         password: !passwordIsValid,
-        confirmPassword: !passwordIsValid || !passwordsAreEqual,
+        confirmPassword: !passwordIsValid || !passwordsAreEqual
       });
       return;
     }
@@ -87,24 +87,24 @@ const styles = StyleSheet.create({
     shadowColor: "black",
     shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 0.35,
-    shadowRadius: 4,
+    shadowRadius: 4
   },
   authHeader: {
     marginBottom: 16,
-    gap: 4,
+    gap: 4
   },
   headerText: {
-    color: "white",
+    color: "white"
   },
   headerTextBig: {
     fontSize: 20,
-    fontWeight: 700,
+    fontWeight: 700
   },
   headerTextSmall: {
     fontSize: 12,
-    fontWeight: 300,
+    fontWeight: 300
   },
   buttons: {
-    marginTop: 8,
-  },
+    marginTop: 8
+  }
 });

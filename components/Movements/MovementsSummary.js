@@ -17,16 +17,16 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "center"
   },
   period: {
     fontSize: 12,
     fontWeight: 500,
-    color: GlobalStyles.colors.primary,
+    color: GlobalStyles.colors.primary
   },
   total: {
     fontSize: 16,
     fontWeight: 700,
-    color: GlobalStyles.colors.accent,
-  },
+    color: GlobalStyles.colors.accent
+  }
 });

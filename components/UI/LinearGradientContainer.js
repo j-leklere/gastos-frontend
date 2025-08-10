@@ -18,6 +18,6 @@ const styles = StyleSheet.create({
   gradient: {
     padding: 8,
     // margin: 16,
-    borderRadius: 12,
-  },
+    borderRadius: 12
+  }
 });

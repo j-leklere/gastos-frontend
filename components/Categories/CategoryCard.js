@@ -8,7 +8,7 @@ export default function CategoryCard({ name, amount }) {
         style={[
           GlobalStyles.textBase,
           GlobalStyles.smallText,
-          GlobalStyles.smallMarginBottom,
+          GlobalStyles.smallMarginBottom
         ]}
       >
         {name}
@@ -25,6 +25,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#182130",
     padding: 16,
     borderRadius: 6,
-    width: 140,
-  },
+    width: 140
+  }
 });

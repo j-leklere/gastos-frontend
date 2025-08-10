@@ -24,7 +24,7 @@ export default function MovementsOverview() {
           headerTintColor: "white",
           tabBarStyle: {
             backgroundColor: GlobalStyles.backgrounds.secondary,
-            borderTopWidth: 0,
+            borderTopWidth: 0
           },
           tabBarActiveTintColor: GlobalStyles.colors.accent,
           headerRight: ({ tintColor }) => (
@@ -34,7 +34,7 @@ export default function MovementsOverview() {
               color={tintColor}
               onPress={() => navigation.navigate("ManageMovement")}
             />
-          ),
+          )
         })}
       >
         <BottomTabs.Screen
@@ -45,7 +45,7 @@ export default function MovementsOverview() {
             tabBarLabel: "Inicio",
             tabBarIcon: ({ color, size }) => (
               <Ionicons name="home" size={size} color={color} />
-            ),
+            )
           }}
         />
         <BottomTabs.Screen
@@ -56,7 +56,7 @@ export default function MovementsOverview() {
             tabBarLabel: "Recientes",
             tabBarIcon: ({ color, size }) => (
               <Ionicons name="calendar" size={size} color={color} />
-            ),
+            )
           }}
         />
         <BottomTabs.Screen
@@ -67,7 +67,7 @@ export default function MovementsOverview() {
             tabBarLabel: "Movimientos",
             tabBarIcon: ({ color, size }) => (
               <Ionicons name="swap-horizontal" size={size} color={color} />
-            ),
+            )
           }}
         />
         <BottomTabs.Screen
@@ -86,7 +86,7 @@ export default function MovementsOverview() {
                 size={24}
                 onPress={authCtx.logout}
               />
-            ),
+            )
           }}
         />
       </BottomTabs.Navigator>

@@ -20,9 +20,9 @@ const styles = StyleSheet.create({
   buttonContainer: {
     borderRadius: 24,
     marginpadding: 6,
-    margin: 8,
+    margin: 8
   },
   pressed: {
-    opacity: 0.75,
-  },
+    opacity: 0.75
+  }
 });

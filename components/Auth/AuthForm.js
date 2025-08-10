@@ -18,7 +18,7 @@ function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
     email: emailIsInvalid,
     confirmEmail: emailsDontMatch,
     password: passwordIsInvalid,
-    confirmPassword: passwordsDontMatch,
+    confirmPassword: passwordsDontMatch
   } = credentialsInvalid;
 
   function updateInputValueHandler(inputType, enteredValue) {
@@ -43,7 +43,7 @@ function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
       email: enteredEmail,
       confirmEmail: enteredConfirmEmail,
       password: enteredPassword,
-      confirmPassword: enteredConfirmPassword,
+      confirmPassword: enteredConfirmPassword
     });
   }
 
@@ -124,16 +124,16 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    gap: 4,
+    gap: 4
   },
   buttonText: {
     color: "white",
     fontSize: 16,
-    fontWeight: 700,
+    fontWeight: 700
   },
   buttons: {
     marginTop: 12,
     padding: 0,
-    borderRadius: 8,
-  },
+    borderRadius: 8
+  }
 });

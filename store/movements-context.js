@@ -6,99 +6,99 @@ const MOVEMENTS_LIST_DTO_DATA = [
     type: "EGRESO",
     description: "Compras",
     amount: 45.67,
-    date: new Date("2025-08-04"),
+    date: new Date("2025-08-04")
   },
   {
     id: 2,
     type: "EGRESO",
     description: "Electricidad",
     amount: 75.32,
-    date: new Date("2025-07-18"),
+    date: new Date("2025-07-18")
   },
   {
     id: 3,
     type: "EGRESO",
     description: "Caffe",
     amount: 3.5,
-    date: new Date("2025-07-19"),
+    date: new Date("2025-07-19")
   },
   {
     id: 4,
     type: "INGRESO",
     description: "Sueldo",
     amount: 1500.0,
-    date: new Date("2025-07-17"),
+    date: new Date("2025-07-17")
   },
   {
     id: 5,
     type: "EGRESO",
     description: "Pelicula",
     amount: 27.0,
-    date: new Date("2025-07-16"),
+    date: new Date("2025-07-16")
   },
   {
     id: 6,
     type: "INGRESO",
     description: "Sueldo",
     amount: 1500.0,
-    date: new Date("2025-07-17"),
+    date: new Date("2025-07-17")
   },
   {
     id: 7,
     type: "EGRESO",
     description: "Pelicula",
     amount: 27.0,
-    date: new Date("2025-07-16"),
+    date: new Date("2025-07-16")
   },
   {
     id: 8,
     type: "INGRESO",
     description: "Sueldo",
     amount: 1500.0,
-    date: new Date("2025-07-17"),
+    date: new Date("2025-07-17")
   },
   {
     id: 9,
     type: "EGRESO",
     description: "Pelicula",
     amount: 27.0,
-    date: new Date("2025-07-16"),
+    date: new Date("2025-07-16")
   },
   {
     id: 10,
     type: "INGRESO",
     description: "Sueldo",
     amount: 1500.0,
-    date: new Date("2025-07-17"),
+    date: new Date("2025-07-17")
   },
   {
     id: 11,
     type: "EGRESO",
     description: "Pelicula",
     amount: 27.0,
-    date: new Date("2025-07-16"),
+    date: new Date("2025-07-16")
   },
   {
     id: 12,
     type: "INGRESO",
     description: "Sueldo",
     amount: 1500.0,
-    date: new Date("2025-07-17"),
+    date: new Date("2025-07-17")
   },
   {
     id: 13,
     type: "EGRESO",
     description: "Pelicula",
     amount: 27.0,
-    date: new Date("2025-07-16"),
-  },
+    date: new Date("2025-07-16")
+  }
 ];
 
 export const MovementsContext = createContext({
   movements: [],
   addMovement: ({ description, amount, date }) => {},
   deleteMovement: ({ id }) => {},
-  updateMovement: (id, { description, amount, date }) => {},
+  updateMovement: (id, { description, amount, date }) => {}
 });
 
 function movementsReducer(state, action) {
@@ -146,7 +146,7 @@ export default function MovementsContextProvider({ children }) {
     movements: movementsState,
     addMovement: addMovement,
     deleteMovement: deleteMovement,
-    updateMovement: updateMovement,
+    updateMovement: updateMovement
   };
 
   return (

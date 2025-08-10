@@ -16,10 +16,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    padding: 32,
+    padding: 32
   },
   message: {
     fontSize: 16,
-    marginBottom: 12,
-  },
+    marginBottom: 12
+  }
 });

@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   wrapper: {
     position: "absolute",
     right: 16,
-    zIndex: 10000,
+    zIndex: 10000
   },
   gradient: {
     width: 56,
@@ -40,6 +40,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 6,
     shadowOffset: { width: 0, height: 3 },
-    elevation: 6,
-  },
+    elevation: 6
+  }
 });

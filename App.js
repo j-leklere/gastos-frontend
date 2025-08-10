@@ -25,7 +25,7 @@ function AuthStack() {
         // headerStyle: { backgroundColor: GlobalStyles.backgrounds.secondary },
         // headerTintColor: "white",
         headerShown: false,
-        contentStyle: { backgroundColor: GlobalStyles.backgrounds.secondary },
+        contentStyle: { backgroundColor: GlobalStyles.backgrounds.secondary }
       }}
     >
       <Stack.Screen name="Login" component={LoginScreen} />
@@ -39,7 +39,7 @@ function AppStack() {
     <Stack.Navigator
       screenOptions={{
         headerStyle: { backgroundColor: GlobalStyles.backgrounds.secondary },
-        headerTintColor: "white",
+        headerTintColor: "white"
       }}
     >
       <Stack.Screen

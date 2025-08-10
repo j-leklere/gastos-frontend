@@ -20,24 +20,24 @@ export default function Button({ children, onPress, mode, style }) {
 
 const styles = StyleSheet.create({
   button: {
-    borderRadius: 4,
+    borderRadius: 4
     // padding: 4,
   },
   flat: {
-    backgroundColor: "transparent",
+    backgroundColor: "transparent"
   },
   buttonText: {
     color: "white",
-    textAlign: "center",
+    textAlign: "center"
   },
   flatText: {
     color: "white",
-    fontWeight: 200,
+    fontWeight: 200
   },
   pressed: {
     opacity: 0.75,
     backgroundColor: GlobalStyles.colors.primary,
     fontWeight: 100,
-    borderRadius: 4,
-  },
+    borderRadius: 4
+  }
 });
