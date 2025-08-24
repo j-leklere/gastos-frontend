@@ -5,6 +5,9 @@ import * as SplashScreen from "expo-splash-screen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ThemeProvider } from "@shopify/restyle";
+import { useColorScheme } from "react-native";
+import { darkTheme, lightTheme } from "./theme/theme";
 
 import { GlobalStyles } from "./constants/styles";
 import AuthContextProvider, { AuthContext } from "./store/auth-context";
@@ -22,7 +25,7 @@ type AuthStackParamList = {
 
 type AppStackParamList = {
   MovementsOverview: undefined;
-  ManageMovement: undefined;
+  ManageMovement: { movementId?: string } | undefined;
 };
 
 type AuthContextShape = {

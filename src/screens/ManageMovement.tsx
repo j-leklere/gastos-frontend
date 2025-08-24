@@ -10,7 +10,7 @@ import {
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 type AppStackParamList = {
-  ManageMovement: { movementId?: string };
+  ManageMovement: { movementId?: string } | undefined;
 };
 
 type Props = NativeStackScreenProps<AppStackParamList, "ManageMovement">;

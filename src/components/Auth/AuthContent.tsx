@@ -1,71 +1,106 @@
 import { useState } from "react";
 import { Alert, StyleSheet, Text, View } from "react-native";
 import AuthForm from "./AuthForm";
+import FlatButton from "../UI/FlatButton";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { LoginPayload, RegisterPayload } from "@/services/auth";
 
-interface AuthContentProps {
-  isLogin: boolean;
-  onAuthenticate: (credentials: { email: string; password: string }) => void;
-}
+type RootParamList = {
+  Login: undefined;
+  Signup: undefined;
+};
+
+type AuthNav = NativeStackNavigationProp<RootParamList>;
+
+type AuthContentProps =
+  | {
+      isLogin: true;
+      onAuthenticate: (payload: LoginPayload) => void | Promise<void>;
+    }
+  | {
+      isLogin?: false;
+      onAuthenticate: (payload: RegisterPayload) => void | Promise<void>;
+    };
 
 export default function AuthContent({
   isLogin,
   onAuthenticate
 }: AuthContentProps) {
+  const navigation = useNavigation<AuthNav>();
+
   const [credentialsInvalid, setCredentialsInvalid] = useState({
+    username: false,
     email: false,
-    password: false,
-    confirmEmail: false,
-    confirmPassword: false
+    password: false
   });
 
-  function submitHandler(credentials: {
-    email: string;
-    confirmEmail: string;
-    password: string;
-    confirmPassword: string;
-  }) {
-    let { email, confirmEmail, password, confirmPassword } = credentials;
+  function switchAuthModeHandler() {
+    if (isLogin) navigation.replace("Signup");
+    else navigation.replace("Login");
+  }
 
-    email = email.trim();
-    password = password.trim();
+  function submitHandler(credentials: LoginPayload | RegisterPayload) {
+    const username = credentials.username.trim();
+    const password = credentials.password.trim();
+    const email = "email" in credentials ? credentials.email.trim() : "";
+
+    const usernameIsValid = username.length >= 6;
+    const passwordIsValid = password.length >= 6;
+
+    if (isLogin) {
+      if (!usernameIsValid || !passwordIsValid) {
+        Alert.alert("Datos inválidos", "Revisá usuario y contraseña.");
+        setCredentialsInvalid({
+          username: !usernameIsValid,
+          email: false,
+          password: !passwordIsValid
+        });
+        return;
+      }
+      onAuthenticate({ username, password });
+      return;
+    }
 
     const emailIsValid = email.includes("@");
-    const passwordIsValid = password.length > 6;
-    const emailsAreEqual = email === confirmEmail;
-    const passwordsAreEqual = password === confirmPassword;
-
-    if (
-      !emailIsValid ||
-      !passwordIsValid ||
-      (!isLogin && (!emailsAreEqual || !passwordsAreEqual))
-    ) {
-      Alert.alert("Invalid input", "Please check your entered credentials.");
+    if (!usernameIsValid || !emailIsValid || !passwordIsValid) {
+      console.log(usernameIsValid);
+      console.log(emailIsValid);
+      console.log(passwordIsValid);
+      Alert.alert("Datos inválidos", "Revisá usuario, email y contraseña.");
       setCredentialsInvalid({
+        username: !usernameIsValid,
         email: !emailIsValid,
-        confirmEmail: !emailIsValid || !emailsAreEqual,
-        password: !passwordIsValid,
-        confirmPassword: !passwordIsValid || !passwordsAreEqual
+        password: !passwordIsValid
       });
       return;
     }
-    onAuthenticate({ email, password });
+
+    onAuthenticate({ username, email, password });
   }
 
   return (
     <View style={styles.authContent}>
       <View style={styles.authHeader}>
         <Text style={[styles.headerText, styles.headerTextBig]}>
-          Inicia sesion
+          Inicia sesión
         </Text>
         <Text style={[styles.headerText, styles.headerTextSmall]}>
-          Gestiona tus gastos de forma simple y rapida
+          Gestiona tus gastos de forma simple y rápida
         </Text>
       </View>
+
       <AuthForm
         isLogin={isLogin}
         onSubmit={submitHandler}
         credentialsInvalid={credentialsInvalid}
       />
+
+      <View>
+        <FlatButton onPress={switchAuthModeHandler}>
+          {isLogin ? "Crear cuenta" : "Iniciar sesión"}
+        </FlatButton>
+      </View>
     </View>
   );
 }

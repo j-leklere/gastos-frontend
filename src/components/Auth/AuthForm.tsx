@@ -1,86 +1,83 @@
 import { useState } from "react";
-import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { StyleSheet, Text, View } from "react-native";
-
 import Button from "../UI/Button";
 import Input from "./Input";
 import LinearGradientContainer from "../UI/LinearGradientContainer";
 import IconButton from "../UI/IconButton";
 
+type LoginCredentials = { username: string; password: string };
+type RegisterCredentials = {
+  username: string;
+  email: string;
+  password: string;
+};
+
 interface AuthFormProps {
-  isLogin: boolean;
-  onSubmit: (credentials: {
-    email: string;
-    confirmEmail: string;
-    password: string;
-    confirmPassword: string;
-  }) => void;
+  isLogin: boolean | undefined;
+  onSubmit: (credentials: LoginCredentials | RegisterCredentials) => void;
   credentialsInvalid: {
+    username: boolean;
     email: boolean;
-    confirmEmail: boolean;
     password: boolean;
-    confirmPassword: boolean;
   };
 }
 
 function AuthForm({ isLogin, onSubmit, credentialsInvalid }: AuthFormProps) {
-  const navigation = useNavigation<NavigationProp<any>>();
-
+  const [enteredUsername, setEnteredUsername] = useState("");
   const [enteredEmail, setEnteredEmail] = useState("");
-  const [enteredConfirmEmail, setEnteredConfirmEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
-  const [enteredConfirmPassword, setEnteredConfirmPassword] = useState("");
 
   const {
+    username: usernameIsInvalid,
     email: emailIsInvalid,
-    confirmEmail: emailsDontMatch,
-    password: passwordIsInvalid,
-    confirmPassword: passwordsDontMatch
+    password: passwordIsInvalid
   } = credentialsInvalid;
 
-  function updateInputValueHandler(inputType: string, enteredValue: string) {
+  function updateInputValueHandler(
+    inputType: "username" | "email" | "password",
+    enteredValue: string
+  ) {
     switch (inputType) {
+      case "username":
+        setEnteredUsername(enteredValue);
+        break;
       case "email":
         setEnteredEmail(enteredValue);
         break;
-      case "confirmEmail":
-        setEnteredConfirmEmail(enteredValue);
-        break;
       case "password":
         setEnteredPassword(enteredValue);
-        break;
-      case "confirmPassword":
-        setEnteredConfirmPassword(enteredValue);
         break;
     }
   }
 
   function submitHandler() {
-    onSubmit({
-      email: enteredEmail,
-      confirmEmail: enteredConfirmEmail,
-      password: enteredPassword,
-      confirmPassword: enteredConfirmPassword
-    });
+    if (isLogin) {
+      onSubmit({ username: enteredUsername, password: enteredPassword });
+    } else {
+      onSubmit({
+        username: enteredUsername,
+        email: enteredEmail,
+        password: enteredPassword
+      });
+    }
   }
 
   return (
-    <View style={styles.form}>
+    <View>
       <View>
         <Input
-          label="Correo electronico"
-          onUpdateValue={updateInputValueHandler.bind(null, "email")}
-          value={enteredEmail}
-          keyboardType="email-address"
-          isInvalid={emailIsInvalid}
+          label="Username"
+          onUpdateValue={updateInputValueHandler.bind(null, "username")}
+          value={enteredUsername}
+          isInvalid={usernameIsInvalid}
         />
         {!isLogin && (
           <Input
-            label="Confirm Email Address"
-            onUpdateValue={updateInputValueHandler.bind(null, "confirmEmail")}
-            value={enteredConfirmEmail}
+            label="Correo electrónico"
+            onUpdateValue={updateInputValueHandler.bind(null, "email")}
+            value={enteredEmail}
             keyboardType="email-address"
-            isInvalid={emailsDontMatch}
+            isInvalid={emailIsInvalid}
           />
         )}
         <Input
@@ -90,39 +87,17 @@ function AuthForm({ isLogin, onSubmit, credentialsInvalid }: AuthFormProps) {
           value={enteredPassword}
           isInvalid={passwordIsInvalid}
         />
-        {!isLogin && (
-          <Input
-            label="Confirm Password"
-            onUpdateValue={updateInputValueHandler.bind(
-              null,
-              "confirmPassword"
-            )}
-            secure
-            value={enteredConfirmPassword}
-            isInvalid={passwordsDontMatch}
-          />
-        )}
         <LinearGradientContainer style={styles.buttons}>
           <View>
             <Button onPress={submitHandler}>
               {isLogin ? (
                 <View style={styles.buttonWithIcon}>
-                  <IconButton
-                    icon="log-in-outline"
-                    size={24}
-                    color="white"
-                    onPress={() => navigation.navigate("ManageMovement")}
-                  />
+                  <IconButton icon="log-in-outline" size={24} color="white" />
                   <Text style={styles.buttonText}>Iniciar sesión</Text>
                 </View>
               ) : (
                 <View style={styles.buttonWithIcon}>
-                  <IconButton
-                    icon="log-out-outline"
-                    size={24}
-                    color="white"
-                    onPress={() => navigation.navigate("ManageMovement")}
-                  />
+                  <IconButton icon="log-out-outline" size={24} color="white" />
                   <Text style={styles.buttonText}>Crear cuenta</Text>
                 </View>
               )}
@@ -152,8 +127,5 @@ const styles = StyleSheet.create({
     marginTop: 12,
     padding: 0,
     borderRadius: 8
-  },
-  form: {
-    flex: 1
   }
 });
