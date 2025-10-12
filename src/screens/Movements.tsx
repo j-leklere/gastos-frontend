@@ -5,7 +5,6 @@ import {
   MovementsContext,
   MovementsContextType
 } from "../store/movements-context";
-import FloatingAddButton from "../components/UI/FloatingAddButton";
 
 export default function Movements() {
   const movementsCtx = useContext<MovementsContextType>(MovementsContext);
@@ -18,7 +17,6 @@ export default function Movements() {
         movementsPeriod="Total"
         fallBackText="No hay movimientos registrados"
       />
-      <FloatingAddButton />
     </View>
   );
 }

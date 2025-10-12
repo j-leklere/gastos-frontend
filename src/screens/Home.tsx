@@ -9,7 +9,6 @@ import { LinearGradient } from "expo-linear-gradient";
 import SummaryHeader from "../components/SummaryHeader";
 import CategoryCard from "../components/Categories/CategoryCard";
 import MovementItem from "../components/Movements/MovementItem";
-import FloatingAddButton from "../components/UI/FloatingAddButton";
 
 type CategorySummary = { id: number; name: string; amount: number };
 type MovementListItem = {
@@ -159,7 +158,6 @@ export default function Home() {
           />
         </LinearGradient>
       </View>
-      <FloatingAddButton />
     </View>
   );
 }

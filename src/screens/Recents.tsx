@@ -6,7 +6,6 @@ import {
   MovementsContextType
 } from "../store/movements-context";
 import { getDateMinusDays } from "../util/date";
-import FloatingAddButton from "../components/UI/FloatingAddButton";
 
 export default function Recents() {
   const movementsCtx = useContext<MovementsContextType>(MovementsContext);
@@ -25,7 +24,6 @@ export default function Recents() {
         movementsPeriod="Ultimos 7 days"
         fallBackText="No hay movimientos en los ultimos 7 dias"
       />
-      <FloatingAddButton />
     </View>
   );
 }

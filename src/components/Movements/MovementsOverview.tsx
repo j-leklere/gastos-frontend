@@ -1,3 +1,4 @@
+// MovementsOverview.tsx
 import { Ionicons } from "@expo/vector-icons";
 import IconButton from "../UI/IconButton";
 import { GlobalStyles } from "../../constants/styles";
@@ -8,11 +9,13 @@ import Settings from "../../screens/Settings";
 import { AuthContext, AuthContextType } from "../../store/auth-context";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useContext } from "react";
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
+import FloatingAddButton from "../UI/FloatingAddButton";
 
 type TabsParamList = {
   Home: undefined;
   Recientes: undefined;
+  AddMovement: undefined;
   Movements: undefined;
   Configuracion: undefined;
 };
@@ -25,23 +28,17 @@ export default function MovementsOverview() {
   return (
     <View style={{ flex: 1 }}>
       <BottomTabs.Navigator
-        screenOptions={({ navigation }) => ({
+        screenOptions={{
           headerStyle: { backgroundColor: GlobalStyles.backgrounds.secondary },
           headerTintColor: "white",
           tabBarStyle: {
             backgroundColor: GlobalStyles.backgrounds.secondary,
-            borderTopWidth: 0
+            borderTopWidth: 0,
+
+            height: 70
           },
-          tabBarActiveTintColor: GlobalStyles.colors.accent,
-          headerRight: ({ tintColor }) => (
-            <IconButton
-              icon="add"
-              size={24}
-              color={tintColor}
-              onPress={() => navigation.navigate("ManageMovement" as never)} // parent stack route
-            />
-          )
-        })}
+          tabBarActiveTintColor: GlobalStyles.colors.accent
+        }}
       >
         <BottomTabs.Screen
           name="Home"
@@ -54,6 +51,7 @@ export default function MovementsOverview() {
             )
           }}
         />
+
         <BottomTabs.Screen
           name="Recientes"
           component={Recents}
@@ -65,6 +63,17 @@ export default function MovementsOverview() {
             )
           }}
         />
+
+        <BottomTabs.Screen
+          name="AddMovement"
+          component={View}
+          options={{
+            tabBarLabel: "",
+            tabBarIcon: () => null,
+            tabBarButton: () => null
+          }}
+        />
+
         <BottomTabs.Screen
           name="Movements"
           component={Movements}
@@ -76,6 +85,7 @@ export default function MovementsOverview() {
             )
           }}
         />
+
         <BottomTabs.Screen
           name="Configuracion"
           component={Settings}
@@ -96,6 +106,8 @@ export default function MovementsOverview() {
           }}
         />
       </BottomTabs.Navigator>
+
+      <FloatingAddButton position="navbar" size={60} iconSize={32} />
     </View>
   );
 }
