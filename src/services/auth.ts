@@ -1,15 +1,6 @@
-import axios from "axios";
-import { Platform } from "react-native";
+import { createApiClient } from "../core/apiClient";
 
-const BASE_URL =
-  Platform.OS === "android"
-    ? "http://10.0.2.2:8080/api/public"
-    : "http://localhost:8080/api/public";
-
-const api = axios.create({
-  baseURL: BASE_URL,
-  headers: { "Content-Type": "application/json" }
-});
+const api = createApiClient({ baseUrl: process.env.EXPO_PUBLIC_AUTH_URL! });
 
 type AuthMode = "register" | "login";
 
@@ -41,8 +32,8 @@ async function authenticate(
   mode: AuthMode,
   payload: LoginPayload | RegisterPayload
 ): Promise<string> {
-  const path = mode === "login" ? "/login" : "/register";
-  const { data } = await api.post<AnyAuthResponse>(path, payload);
+  const path = mode === "login" ? "login" : "register";
+  const data = await api.post<AnyAuthResponse>(path, payload);
   const token =
     data.token ?? data.idToken ?? (data.accessToken as string | undefined);
   if (!token) throw new Error("No se encontró el token en la respuesta");

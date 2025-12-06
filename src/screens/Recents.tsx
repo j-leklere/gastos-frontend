@@ -1,29 +1,32 @@
-import { useContext } from "react";
-import { View } from "react-native";
+import { useMemo } from "react";
 import MovementsOutput from "../components/Movements/MovementsOutput";
-import {
-  MovementsContext,
-  MovementsContextType
-} from "../store/movements-context";
+import { useMovements } from "@/features/movement/hooks";
 import { getDateMinusDays } from "../util/date";
 
 export default function Recents() {
-  const movementsCtx = useContext<MovementsContextType>(MovementsContext);
+  const { data: allMovements = [] } = useMovements({});
 
-  const recentMovements = movementsCtx.movements.filter((movement) => {
+  const recentMovements = useMemo(() => {
     const today = new Date();
     const date7DaysAgo = getDateMinusDays(today, 7);
-    return movement.date >= date7DaysAgo && movement.date <= today;
-  });
+    return allMovements.filter(
+      (movement) => movement.date >= date7DaysAgo && movement.date <= today
+    );
+  }, [allMovements]);
+
+  const total = useMemo(() => {
+    return recentMovements.reduce((sum, m) => {
+      const amount = m.kind === "income" ? m.value : -m.value;
+      return sum + amount;
+    }, 0);
+  }, [recentMovements]);
 
   return (
-    <View style={{ flex: 1 }}>
-      <MovementsOutput
-        movements={recentMovements}
-        movementsTotal={10}
-        movementsPeriod="Ultimos 7 days"
-        fallBackText="No hay movimientos en los ultimos 7 dias"
-      />
-    </View>
+    <MovementsOutput
+      movements={recentMovements}
+      movementsTotal={total}
+      movementsPeriod="Últimos 7 días"
+      fallBackText="No hay movimientos en los últimos 7 días"
+    />
   );
 }

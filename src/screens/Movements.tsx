@@ -1,22 +1,23 @@
-import { useContext } from "react";
-import { View } from "react-native";
+import { useMemo } from "react";
 import MovementsOutput from "../components/Movements/MovementsOutput";
-import {
-  MovementsContext,
-  MovementsContextType
-} from "../store/movements-context";
+import { useMovements } from "@/features/movement/hooks";
 
 export default function Movements() {
-  const movementsCtx = useContext<MovementsContextType>(MovementsContext);
+  const { data: movements = [] } = useMovements({});
+
+  const total = useMemo(() => {
+    return movements.reduce((sum, m) => {
+      const amount = m.kind === "income" ? m.value : -m.value;
+      return sum + amount;
+    }, 0);
+  }, [movements]);
 
   return (
-    <View style={{ flex: 1 }}>
-      <MovementsOutput
-        movements={movementsCtx.movements}
-        movementsTotal={10}
-        movementsPeriod="Total"
-        fallBackText="No hay movimientos registrados"
-      />
-    </View>
+    <MovementsOutput
+      movements={movements}
+      movementsTotal={total}
+      movementsPeriod="Total"
+      fallBackText="No hay movimientos registrados"
+    />
   );
 }

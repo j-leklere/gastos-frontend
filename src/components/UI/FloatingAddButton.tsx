@@ -62,13 +62,7 @@ export default function FloatingAddButton({
 
   return (
     <View style={containerStyle}>
-      <Pressable
-        onPress={handlePress}
-        style={({ pressed }) => [
-          getWrapperStyle()
-          // pressed && styles.pressed
-        ]}
-      >
+      <Pressable onPress={handlePress} style={getWrapperStyle()}>
         <LinearGradientContainer
           style={[
             styles.gradient,
@@ -101,14 +95,5 @@ const styles = StyleSheet.create({
   gradient: {
     alignItems: "center",
     justifyContent: "center"
-    // shadowColor: "#000",
-    // shadowOpacity: 0.1,
-    // shadowRadius: 8,
-    // shadowOffset: { width: 0, height: 4 },
-    // elevation: 2
   }
-  // pressed: {
-  //   opacity: 0.85,
-  //   transform: [{ scale: 0.95 }]
-  // }
 });

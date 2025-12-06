@@ -2,7 +2,22 @@ import { StyleSheet, Text, View } from "react-native";
 import { GlobalStyles } from "../constants/styles";
 import LinearGradientContainer from "./UI/LinearGradientContainer";
 
-export default function SummaryHeader() {
+type Props = {
+  total?: number;
+  uncategorizedCount?: number;
+};
+
+export default function SummaryHeader({
+  total = 0,
+  uncategorizedCount = 0
+}: Props) {
+  const isPositive = total >= 0;
+  const totalColor = isPositive ? "#10b981" : "#ef4444";
+  const formattedTotal = Math.abs(total).toLocaleString("es-AR", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+
   return (
     <View>
       <LinearGradientContainer>
@@ -14,7 +29,7 @@ export default function SummaryHeader() {
               GlobalStyles.tinyMarginBottom
             ]}
           >
-            Buenos dias Joaquin
+            Buenos días Joaquin
           </Text>
           <Text
             style={[
@@ -23,10 +38,18 @@ export default function SummaryHeader() {
               GlobalStyles.hugeMarginBottom
             ]}
           >
-            Tienes 3 gastos pendientes de categorizar
+            {uncategorizedCount > 0
+              ? `Tienes ${uncategorizedCount} gastos pendientes de categorizar`
+              : "Todos tus gastos están categorizados"}
           </Text>
-          <Text style={[GlobalStyles.textBase, GlobalStyles.bigText]}>
-            $12.760.000,50
+          <Text
+            style={[
+              GlobalStyles.textBase,
+              GlobalStyles.bigText,
+              { color: totalColor }
+            ]}
+          >
+            {isPositive ? "+" : "-"}${formattedTotal}
           </Text>
         </View>
       </LinearGradientContainer>

@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import MovementsSummary from "./MovementsSummary";
 import MovementsList, { MovementListItem } from "./MovementsList";
-import { GlobalStyles } from "../../constants/styles";
 
 type Props = {
   movements: MovementListItem[];
@@ -24,20 +24,24 @@ export default function MovementsOutput({
     );
 
   return (
-    <View style={styles.container}>
+    <LinearGradient
+      colors={["#111828", "#171E2D"]}
+      start={{ x: 0.5, y: 0 }}
+      end={{ x: 0.5, y: 1 }}
+      style={styles.container}
+    >
       <MovementsSummary total={movementsTotal} periodName={movementsPeriod} />
       {content}
-    </View>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 24,
-    paddingTop: 24,
-    backgroundColor: GlobalStyles.backgrounds.secondary,
-    gap: 10
+    padding: 8,
+    paddingTop: 52,
+    gap: 12
   },
   infoText: {
     color: "white",

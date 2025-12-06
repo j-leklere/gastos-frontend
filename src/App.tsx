@@ -5,18 +5,15 @@ import * as SplashScreen from "expo-splash-screen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { ThemeProvider } from "@shopify/restyle";
-import { useColorScheme } from "react-native";
-import { darkTheme, lightTheme } from "./theme/theme";
 
 import { GlobalStyles } from "./constants/styles";
 import AuthContextProvider, { AuthContext } from "./store/auth-context";
-import MovementsContextProvider from "./store/movements-context";
 
 import LoginScreen from "./screens/LoginScreen";
 import SignupScreen from "./screens/SignupScreen";
 import ManageMovement from "./screens/ManageMovement";
 import MovementsOverview from "./components/Movements/MovementsOverview";
+import { AppProviders } from "./core/AppProviders";
 
 type AuthStackParamList = {
   Login: undefined;
@@ -25,7 +22,7 @@ type AuthStackParamList = {
 
 type AppStackParamList = {
   MovementsOverview: undefined;
-  ManageMovement: { movementId?: string } | undefined;
+  ManageMovement: { movementId?: string };
 };
 
 type AuthContextShape = {
@@ -94,13 +91,7 @@ function Root() {
   return (
     <View style={{ flex: 1 }} onLayout={onLayout}>
       <NavigationContainer>
-        {!auth.isAuthenticated ? (
-          <AuthStack />
-        ) : (
-          <MovementsContextProvider>
-            <AppStack />
-          </MovementsContextProvider>
-        )}
+        {!auth.isAuthenticated ? <AuthStack /> : <AppStack />}
       </NavigationContainer>
     </View>
   );
@@ -110,9 +101,11 @@ export default function App() {
   return (
     <>
       <StatusBar style="light" />
-      <AuthContextProvider>
-        <Root />
-      </AuthContextProvider>
+      <AppProviders>
+        <AuthContextProvider>
+          <Root />
+        </AuthContextProvider>
+      </AppProviders>
     </>
   );
 }

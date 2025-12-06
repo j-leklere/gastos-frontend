@@ -1,15 +1,12 @@
 // MovementsOverview.tsx
 import { Ionicons } from "@expo/vector-icons";
-import IconButton from "../UI/IconButton";
 import { GlobalStyles } from "../../constants/styles";
 import Home from "../../screens/Home";
 import Movements from "../../screens/Movements";
 import Recents from "../../screens/Recents";
 import Settings from "../../screens/Settings";
-import { AuthContext, AuthContextType } from "../../store/auth-context";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { useContext } from "react";
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 import FloatingAddButton from "../UI/FloatingAddButton";
 
 type TabsParamList = {
@@ -23,21 +20,23 @@ type TabsParamList = {
 const BottomTabs = createBottomTabNavigator<TabsParamList>();
 
 export default function MovementsOverview() {
-  const authCtx = useContext<AuthContextType>(AuthContext);
-
   return (
     <View style={{ flex: 1 }}>
       <BottomTabs.Navigator
         screenOptions={{
+          headerShown: false,
           headerStyle: { backgroundColor: GlobalStyles.backgrounds.secondary },
           headerTintColor: "white",
           tabBarStyle: {
             backgroundColor: GlobalStyles.backgrounds.secondary,
             borderTopWidth: 0,
-
-            height: 70
+            height: 70,
+            paddingBottom: 8,
+            paddingTop: 8
           },
-          tabBarActiveTintColor: GlobalStyles.colors.accent
+          tabBarActiveTintColor: "#60a5fa",
+          tabBarInactiveTintColor: "#6b7280",
+          tabBarShowLabel: false
         }}
       >
         <BottomTabs.Screen
@@ -94,14 +93,6 @@ export default function MovementsOverview() {
             tabBarLabel: "Configuración",
             tabBarIcon: ({ color, size }) => (
               <Ionicons name="settings-sharp" size={size} color={color} />
-            ),
-            headerRight: ({ tintColor }) => (
-              <IconButton
-                icon="exit-outline"
-                color={tintColor}
-                size={24}
-                onPress={authCtx.logout}
-              />
             )
           }}
         />

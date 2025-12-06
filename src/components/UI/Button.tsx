@@ -35,22 +35,32 @@ export default function Button({ children, onPress, mode, style }: Props) {
 
 const styles = StyleSheet.create({
   button: {
-    borderRadius: 4
+    borderRadius: 8,
+    backgroundColor: GlobalStyles.colors.accent,
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    elevation: 2,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84
   },
   flat: {
-    backgroundColor: "transparent"
+    backgroundColor: "transparent",
+    elevation: 0,
+    shadowOpacity: 0
   },
   buttonText: {
     color: "white",
-    textAlign: "center"
+    textAlign: "center",
+    fontSize: 16,
+    fontWeight: "700"
   },
   flatText: {
-    color: "white",
-    fontWeight: "200" // RN espera string, no number
+    color: "#9ca3af",
+    fontWeight: "600"
   },
   pressed: {
-    opacity: 0.75,
-    backgroundColor: GlobalStyles.colors.primary,
-    borderRadius: 4
+    opacity: 0.8
   }
 });
